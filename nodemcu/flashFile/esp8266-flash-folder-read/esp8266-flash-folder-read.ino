@@ -83,6 +83,8 @@ void setup() {
     htmlCode +=(String)(dir.fileName());
     htmlCode +=">>||";
   }  
+
+  
 }
  
 void loop() {
