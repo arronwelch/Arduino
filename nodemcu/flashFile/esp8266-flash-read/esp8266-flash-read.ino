@@ -27,7 +27,7 @@ ESP8266WiFiMulti wifiMulti;     // 建立ESP8266WiFiMulti对象,对象名称是'
  
 ESP8266WebServer esp8266_server(80);// 建立网络服务器对象，该对象用于响应HTTP请求。监听端口（80）
 
-String file_name = "/taichi-maker/myFile.txt";              //被读取的文件位置和名称
+String file_name = "/taichi-maker/notes.txt";              //被读取的文件位置和名称
 String htmlCode = "";              //存储文件内容的字符串变量
 
 void setup() {
