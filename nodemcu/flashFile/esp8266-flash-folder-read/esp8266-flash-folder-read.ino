@@ -34,7 +34,9 @@ void setup()
   appendFile("/taichi-maker/myFile1.txt", "This is Appended Info.");
   writeFile("/taichi-maker/myFile2.txt", "This is myFile2Content");  
   appendFile("/taichi-maker/myFile2.txt", "This is Appended Info.");
-  appendFile("/taichi-maker/myFile2.txt", "This is Appended Info.");
+  appendFile("/taichi-maker/myFile2.txt", "This is Appended Info.");  
+  DirDisplay("/taichi-maker");
+  removeFile("/taichi-maker/myFile2.txt");
   DirDisplay("/taichi-maker");
   readFile("/taichi-maker/myFile1.txt");
   readFile("/taichi-maker/myFile2.txt");
@@ -68,6 +70,7 @@ String IpAddress2String(const IPAddress& ipAddress)
 void WiFiLocalWebServerSet()
 {
   //通过addAp函数存储  WiFi名称       WiFi密码
+  
   wifiMulti.addAP("ssid_from_AP_1", "your_password_for_AP_1"); // 将需要连接的一系列WiFi ID和密码输入这里
   wifiMulti.addAP("ssid_from_AP_2", "your_password_for_AP_2"); // ESP8266-NodeMCU再启动后会扫描当前网络
   wifiMulti.addAP("ssid_from_AP_3", "your_password_for_AP_3"); // 环境查找是否有这里列出的WiFi ID。如果有
@@ -206,5 +209,45 @@ void appendFile(String file_name, String file_content)
     htmlCode += file_name;
     htmlCode += "||";
     htmlCode +="3.NOT Finished Appending data to SPIFFS||";
+  }
+}
+
+void removeFile(String file_name)
+{
+   //1.启动闪存文件系统
+  if(SPIFFS.begin())
+  {
+    htmlCode += "1.SPIFFS Started||";
+  } 
+  else 
+  {
+    htmlCode += "1.SPIFFS Failed to Start||";
+  }
+ 
+  //2.确认闪存中是否有file_name文件
+  if (SPIFFS.exists(file_name))
+  {
+    htmlCode += "2.FOUND ";
+    htmlCode += file_name;
+    htmlCode += "||";
+
+    if(SPIFFS.remove(file_name))
+    {
+      htmlCode +="3.Remove ";
+      htmlCode +=file_name;
+      htmlCode +="Success!||";
+    }
+    else
+    {
+      htmlCode +="3.Remove ";
+      htmlCode +=file_name;
+      htmlCode +="Fail!||";
+    }
+  } 
+  else 
+  {
+    htmlCode += "2.NOT FOUND ";
+    htmlCode += file_name;
+    htmlCode += "||";
   }
 }
