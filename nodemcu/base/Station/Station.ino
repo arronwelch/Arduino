@@ -12,9 +12,9 @@ By 太极创客（http://www.taichi-maker.com）
  
 #include <ESP8266WiFi.h>        // 本程序使用ESP8266WiFi库
  
-const char* ssid     = "TP-LINK_68EFEC";      // 连接WiFi名（此处使用taichi-maker为示例）
+const char* ssid     = "taichi-maker";      // 连接WiFi名（此处使用taichi-maker为示例）
                                             // 请将您需要连接的WiFi名填入引号中
-const char* password = "18163676911*";          // 连接WiFi密码（此处使用12345678为示例）
+const char* password = "12345678";          // 连接WiFi密码（此处使用12345678为示例）
                                             // 请将您需要连接的WiFi密码填入引号中
                                             
 void setup() {

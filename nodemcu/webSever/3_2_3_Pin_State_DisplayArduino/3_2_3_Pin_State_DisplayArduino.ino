@@ -31,8 +31,6 @@ void setup(){
   pinMode(buttonPin, INPUT_PULLUP); // 将按键引脚设置为输入上拉模式
 
   //通过addAp函数存储  WiFi名称       WiFi密码
-  wifiMulti.addAP("TP-LINK_68EFEC","18163676911*");
-  //wifiMulti.addAP("TP-LINK_DB58","nch13787252353");
   wifiMulti.addAP("ssid_from_AP_1", "your_password_for_AP_1"); // 将需要连接的一系列WiFi ID和密码输入这里
   wifiMulti.addAP("ssid_from_AP_2", "your_password_for_AP_2"); // ESP8266-NodeMCU再启动后会扫描当前网络
   wifiMulti.addAP("ssid_from_AP_3", "your_password_for_AP_3"); // 环境查找是否有这里列出的WiFi ID。如果有

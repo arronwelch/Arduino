@@ -31,7 +31,10 @@ void setup()
   SPIFFS.format(); // 格式化SPIFFS
   htmlCode += "SPIFFS format finish||";
   writeFile("/taichi-maker/myFile1.txt", "This is myFile1Content");
-  writeFile("/taichi-maker/myFile2.txt", "This is myFile2Content");
+  appendFile("/taichi-maker/myFile1.txt", "This is Appended Info.");
+  writeFile("/taichi-maker/myFile2.txt", "This is myFile2Content");  
+  appendFile("/taichi-maker/myFile2.txt", "This is Appended Info.");
+  appendFile("/taichi-maker/myFile2.txt", "This is Appended Info.");
   DirDisplay("/taichi-maker");
   readFile("/taichi-maker/myFile1.txt");
   readFile("/taichi-maker/myFile2.txt");
@@ -65,8 +68,10 @@ String IpAddress2String(const IPAddress& ipAddress)
 void WiFiLocalWebServerSet()
 {
   //通过addAp函数存储  WiFi名称       WiFi密码
-  wifiMulti.addAP("TP-LINK_68EFEC", "18163676911*");
-  //wifiMulti.addAP("TP-LINK_DB58","nch13787252353");
+  wifiMulti.addAP("ssid_from_AP_1", "your_password_for_AP_1"); // 将需要连接的一系列WiFi ID和密码输入这里
+  wifiMulti.addAP("ssid_from_AP_2", "your_password_for_AP_2"); // ESP8266-NodeMCU再启动后会扫描当前网络
+  wifiMulti.addAP("ssid_from_AP_3", "your_password_for_AP_3"); // 环境查找是否有这里列出的WiFi ID。如果有
+//Serial.println("Connecting ...");                            // 则尝试使用此处存储的密码进行连接。
 
   htmlCode += "||1.Connecting wifi";
 
@@ -169,4 +174,37 @@ void readFile(String file_name)
 
   //完成文件读取后关闭文件
   dataFile_read.close();
+}
+
+void appendFile(String file_name, String file_content)
+{
+   //1.启动闪存文件系统
+  if(SPIFFS.begin())
+  {
+    htmlCode += "1.SPIFFS Started||";
+  } 
+  else 
+  {
+    htmlCode += "1.SPIFFS Failed to Start||";
+  }
+ 
+  //2.确认闪存中是否有file_name文件
+  if (SPIFFS.exists(file_name))
+  {
+    htmlCode += "2.FOUND ";
+    htmlCode += file_name;
+    htmlCode += "||";
+
+    File dataFile = SPIFFS.open(file_name, "a");// 建立File对象用于向SPIFFS中的file对象（即/notes.txt）写入信息
+    dataFile.println("This is Appended Info."); // 向dataFile添加字符串信息
+    dataFile.close();                           // 完成文件操作后关闭文件   
+    htmlCode +="3.Finished Appending data to SPIFFS||";    
+  } 
+  else 
+  {
+    htmlCode += "2.NOT FOUND ";
+    htmlCode += file_name;
+    htmlCode += "||";
+    htmlCode +="3.NOT Finished Appending data to SPIFFS||";
+  }
 }

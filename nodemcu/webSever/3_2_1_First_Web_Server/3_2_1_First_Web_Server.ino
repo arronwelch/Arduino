@@ -26,8 +26,6 @@ void setup(void){
   Serial.begin(9600);          // 启动串口通讯
  
   //通过addAp函数存储  WiFi名称       WiFi密码
-  wifiMulti.addAP("TP-LINK_68EFEC","18163676911*");
-  //wifiMulti.addAP("TP-LINK_DB58","nch13787252353");
   wifiMulti.addAP("taichi-maker", "12345678");  // 这三条语句通过调用函数addAP来记录3个不同的WiFi网络信息。
   wifiMulti.addAP("taichi-maker2", "87654321"); // 这3个WiFi网络名称分别是taichi-maker, taichi-maker2, taichi-maker3。
   wifiMulti.addAP("taichi-maker3", "13572468"); // 这3个网络的密码分别是123456789，87654321，13572468。

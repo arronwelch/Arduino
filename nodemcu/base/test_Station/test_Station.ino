@@ -1,8 +1,9 @@
 
 #include <ESP8266WiFi.h>
 
-const char* ssid = "TP-LINK_68EFEC";
-const char* password = "18163676911*";
+const char *ssid = "taichi-maker";
+
+const char *password = "12345678";
 
 void setup()
 {
