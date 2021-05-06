@@ -29,6 +29,7 @@ void setup()
 {
   WiFiLocalWebServerSet();
   SPIFFS.format(); // 格式化SPIFFS
+  displayFileInfo();
   htmlCode += "SPIFFS format finish||";
   writeFile("/taichi-maker/myFile1.txt", "This is myFile1Content");
   appendFile("/taichi-maker/myFile1.txt", "This is Appended Info.");
@@ -40,6 +41,7 @@ void setup()
   DirDisplay("/taichi-maker");
   readFile("/taichi-maker/myFile1.txt");
   readFile("/taichi-maker/myFile2.txt");
+  displayFileInfo();
 }
 
 void loop()
@@ -70,7 +72,7 @@ String IpAddress2String(const IPAddress& ipAddress)
 void WiFiLocalWebServerSet()
 {
   //通过addAp函数存储  WiFi名称       WiFi密码
-  
+  wifiMulti.addAP("TP-LINK_68EFEC", "18163676911*");
   wifiMulti.addAP("ssid_from_AP_1", "your_password_for_AP_1"); // 将需要连接的一系列WiFi ID和密码输入这里
   wifiMulti.addAP("ssid_from_AP_2", "your_password_for_AP_2"); // ESP8266-NodeMCU再启动后会扫描当前网络
   wifiMulti.addAP("ssid_from_AP_3", "your_password_for_AP_3"); // 环境查找是否有这里列出的WiFi ID。如果有
@@ -250,4 +252,51 @@ void removeFile(String file_name)
     htmlCode += file_name;
     htmlCode += "||";
   }
+}
+
+void displayFileInfo()
+{
+   //1.启动闪存文件系统
+  if(SPIFFS.begin())
+  {
+    htmlCode += "1.SPIFFS Started||";
+  } 
+  else 
+  {
+    htmlCode += "1.SPIFFS Failed to Start||";
+  }
+ 
+  // 闪存文件系统信息
+  FSInfo fs_info;
+  SPIFFS.info(fs_info);
+ 
+  // 可用空间总和（单位：字节）
+  htmlCode += "totalBytes: ";
+  htmlCode += fs_info.totalBytes;
+  htmlCode += " Bytes||";
+ 
+  // 已用空间（单位：字节） 
+  htmlCode += "usedBytes: ";
+  htmlCode += fs_info.usedBytes;
+  htmlCode += " Bytes||";
+ 
+  // 最大文件名字符限制（含路径和'\0'）
+  htmlCode += "maxPathLength: ";
+  htmlCode += fs_info.maxPathLength;
+  htmlCode += "||";
+ 
+  // 最多允许打开文件数量
+  htmlCode += "maxOpenFiles: ";
+  htmlCode += fs_info.maxOpenFiles;
+  htmlCode += "||";
+ 
+  // 存储块大小
+  htmlCode += "blockSize: ";
+  htmlCode += fs_info.blockSize;
+  htmlCode += "||";  
+ 
+  // 存储页大小
+  htmlCode += "pageSize: ";
+  htmlCode += fs_info.pageSize;
+  htmlCode += "||";    
 }
