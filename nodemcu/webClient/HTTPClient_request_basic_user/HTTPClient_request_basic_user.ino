@@ -32,8 +32,8 @@
 #define URL "http://www.example.com"
  
 // 设置wifi接入信息(请根据您的WiFi信息进行修改)
-const char* ssid = "TP-LINK_68EFEC";
-const char* password = "18163676911*";
+const char* ssid = "testwifi";
+const char* password = "123456@**";
  
 void setup() {
   //初始化串口设置
