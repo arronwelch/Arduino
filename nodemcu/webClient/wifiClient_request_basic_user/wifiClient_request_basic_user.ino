@@ -83,6 +83,12 @@ void wifiClientRequest(){
   // 建立WiFi客户端对象，对象名称client
   WiFiClient client;    
 
+/*
+GET / HTTP/1.1
+Host: www.example.com
+Connection: close 
+ */
+
   // 建立字符串，用于HTTP请求
   String httpRequest =  String("GET /") + " HTTP/1.1\r\n" +
                         "Host: " + host + "\r\n" +
