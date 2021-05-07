@@ -1,0 +1,6 @@
+\xFFSPIFFS Started.
+Finished Writing data to SPIFFS
+Try to find IOT in /taichi-maker/notes.txt
+Found IOT in file: /taichi-maker/notes.txt
+Use readString to get contents of dataFile after find
+ World.
