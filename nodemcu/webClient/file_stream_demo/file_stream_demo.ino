@@ -43,7 +43,7 @@ void setup() {
   File dataFile = SPIFFS.open(file_name, "w");// 建立File对象用于向SPIFFS中的file对象（即/notes.txt）写入信息
   dataFile.println("Hello IOT World.");       // 向dataFile写入字符串信息
   dataFile.close();                           // 完成文件写入后关闭文件
-  mySerial.println("Finished Writing data to SPIFFS");
+  mySerial.println("Finished Writing data:\"Hello IOT World.\" to SPIFFS");
  
   // 使用find函数从dataFile中找到指定信息
   mySerial.print("Try to find IOT in file:");mySerial.println(file_name); 

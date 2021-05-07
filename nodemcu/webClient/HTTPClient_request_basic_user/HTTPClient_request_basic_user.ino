@@ -33,8 +33,7 @@
  
 // 设置wifi接入信息(请根据您的WiFi信息进行修改)
 const char* ssid = "testwifi";
-const char* password = "12345
-6@**";
+const char* password = "123456@**";
  
 void setup() {
   //初始化串口设置
