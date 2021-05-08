@@ -25,7 +25,7 @@
 2.IP地址需要根据路由器分配的IP地址来修改。
 
 http信息发送说明
-192.168.0.104/update?float=1.5&int=2&button=0
+192.168.0.222/update?float=1.5&int=2&button=0
 */
 
 #include <ESP8266WiFi.h>
@@ -45,7 +45,7 @@ ESP8266WiFiMulti wifiMulti; // 建立ESP8266WiFiMulti对象,对象名称是 'wif
 
 ESP8266WebServer server(80); // 建立网络服务器对象，该对象用于响应HTTP请求。监听端口（80）
 
-IPAddress local_IP(192, 168, 0, 104); // 设置ESP8266-NodeMCU联网后的IP
+IPAddress local_IP(192, 168, 0, 222); // 设置ESP8266-NodeMCU联网后的IP
 IPAddress gateway(192, 168, 0, 1);    // 设置网关IP（通常网关IP是WiFI路由IP）
 IPAddress subnet(255, 255, 255, 0);   // 设置子网掩码
 IPAddress dns(192, 168, 0, 1);        // 设置局域网DNS的IP（通常局域网DNS的IP是WiFI路由IP）
