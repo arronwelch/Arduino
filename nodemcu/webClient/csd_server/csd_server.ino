@@ -20,6 +20,13 @@
 20200229      CYNO朔           0.01       加入IP设置
  
 ***********************************************************************/
+/*
+1.没有第二块板子可以使用浏览器来发送请求；
+2.IP地址需要根据路由器分配的IP地址来修改。
+
+http信息发送说明
+192.168.0.104/update?float=1.5&int=2&button=0
+*/
 
 #include <ESP8266WiFi.h>
 #include <ESP8266WiFiMulti.h> // 使用WiFiMulti库
@@ -38,7 +45,7 @@ ESP8266WiFiMulti wifiMulti; // 建立ESP8266WiFiMulti对象,对象名称是 'wif
 
 ESP8266WebServer server(80); // 建立网络服务器对象，该对象用于响应HTTP请求。监听端口（80）
 
-IPAddress local_IP(192, 168, 0, 123); // 设置ESP8266-NodeMCU联网后的IP
+IPAddress local_IP(192, 168, 0, 104); // 设置ESP8266-NodeMCU联网后的IP
 IPAddress gateway(192, 168, 0, 1);    // 设置网关IP（通常网关IP是WiFI路由IP）
 IPAddress subnet(255, 255, 255, 0);   // 设置子网掩码
 IPAddress dns(192, 168, 0, 1);        // 设置局域网DNS的IP（通常局域网DNS的IP是WiFI路由IP）
@@ -55,6 +62,7 @@ void setup(void)
   SoftwareSerial mySerial(rxPin, txPin);
   // set the data rate for the SoftwareSerial port
   mySerial.begin(9600);
+  delay(100);
 
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, HIGH);
@@ -74,7 +82,7 @@ void setup(void)
   // 尝试进行wifi连接。
   while (wifiMulti.run() != WL_CONNECTED)
   {
-    delay(250);
+    delay(1000);
     mySerial.print('.');
   }
 
