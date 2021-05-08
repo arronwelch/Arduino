@@ -14,7 +14,8 @@ k123oktaichi678maker567
 Please enter input...
 Found ok in user input.
 serialParseInt = 678
-serialInput = maker567
+serialInput = 
+
 -----------------------------------------------------------------------
 本示例程序为太极创客团队制作的《零基础入门学用物联网》中示例程序。
 该教程为对物联网开发感兴趣的朋友所设计和制作。如需了解更多该教程的信息，请参考以下网页：
