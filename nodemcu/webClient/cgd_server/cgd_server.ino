@@ -39,10 +39,10 @@ ESP8266WiFiMulti wifiMulti;     // 建立ESP8266WiFiMulti对象,对象名称是'
  
 ESP8266WebServer esp8266_server(80);// 建立网络服务器对象，该对象用于响应HTTP请求。监听端口（80）
 
-IPAddress local_IP(192, 168, 0, 123); // 设置ESP8266-NodeMCU联网后的IP
-IPAddress gateway(192, 168, 0, 1);    // 设置网关IP（通常网关IP是WiFI路由IP）
+IPAddress local_IP(192, 168, 31, 123); // 设置ESP8266-NodeMCU联网后的IP
+IPAddress gateway(192, 168, 31, 1);    // 设置网关IP（通常网关IP是WiFI路由IP）
 IPAddress subnet(255, 255, 255, 0);   // 设置子网掩码
-IPAddress dns(192,168,0,1);           // 设置局域网DNS的IP（通常局域网DNS的IP是WiFI路由IP）
+IPAddress dns(192,168,31,1);           // 设置局域网DNS的IP（通常局域网DNS的IP是WiFI路由IP）
  
 bool pinState;                 // 存储引脚状态用变量
 
@@ -68,6 +68,7 @@ void setup(){
   } 
 
   //通过addAp函数存储  WiFi名称       WiFi密码
+  wifiMulti.addAP("Xiaomi_FD94", "LuckDuck2^8");
   wifiMulti.addAP("TP-LINK_68EFEC", "18163676911*");
   wifiMulti.addAP("taichi-maker1", "12345678"); // 这三条语句通过调用函数addAP来记录3个不同的WiFi网络信息。
   wifiMulti.addAP("taichi-maker2", "87654321"); // 用户可自行增加、修改、删除此处网络连接信息。
