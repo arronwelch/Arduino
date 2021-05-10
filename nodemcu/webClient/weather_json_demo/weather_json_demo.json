@@ -1,0 +1,20 @@
+{
+  "results": [
+    {
+      "location": {
+        "id": "WX4FBXXFKE4F",
+        "name": "Beijing",
+        "country": "CN",
+        "path": "Beijing,Beijing,China",
+        "timezone": "Asia/Shanghai",
+        "timezone_offset": "+08:00"
+      },
+      "now": {
+        "text": "Overcast",
+        "code": "9",
+        "temperature": "16"
+      },
+      "last_update": "2021-05-10T22:40:00+08:00"
+    }
+  ]
+}

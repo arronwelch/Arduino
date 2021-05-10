@@ -1,0 +1,29 @@
+k
+..
+WiFi Connected!
+Connecting to api.seniverse.com Success!
+Sending request: 
+GET /v3/weather/now.json?key=SCXC4Mj_0aB96cZup&location=beijing&language=en&unit=c HTTP/1.1
+Host: api.seniverse.com
+Connection: close
+
+
+Web Server Response:
+HTTP/1.1 200 OK
+Date: Mon, 10 May 2021 15:22:45 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 263
+Connection: close
+X-Instance-Id: 0e9c72c8-83b3-4cec-a8db-00821d4784ff
+X-RateLimit-Limit-hour: 400
+X-RateLimit-Remaining-hour: 391
+X-Powered-By: Express
+ETag: W/"107-106qZTgden5YMJKZ6L0osHVYN0A"
+X-Kong-Upstream-Latency: 0
+X-Kong-Proxy-Latency: 24
+Via: kong/0.14.1
+
+{"results":[{"location":{"id":"WX4FBXXFKE4F","name":"Beijing","country":"CN","path":"Beijing,Beijing,China","timezone":"Asia/Shanghai","timezone_offset":"+08:00"},"now":{"text":"Overcast","code":"9","temperature":"16"},"last_update":"2021-05-10T22:40:00+08:00"}]}
+Disconnected from api.seniverse.com
+
+
