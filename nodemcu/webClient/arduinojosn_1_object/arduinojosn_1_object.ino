@@ -16,10 +16,32 @@
 该教程为对物联网开发感兴趣的朋友所设计和制作。如需了解更多该教程的信息，请参考以下网页：
 http://www.taichi-maker.com/homepage/esp8266-nodemcu-iot/
 ***********************************************************************/
+
+// include the SoftwareSerial library so you can use its functions:
+#include <SoftwareSerial.h>
+#define rxPin 4
+#define txPin 5
+//Arduino 1.8.13
+//esp8266 Board 2.7.4
+//new NodeMcu V3 LOLin(CH340G driver)
+//Saleae Logic 2.3.27
+
 #include <ArduinoJson.h>
  
 void setup() {
+
+  // define pin modes for tx, rx:
+  pinMode(rxPin, INPUT);
+  pinMode(txPin, OUTPUT);
+  // set up a new serial port
+  SoftwareSerial mySerial(rxPin, txPin);  
+  // set the data rate for the SoftwareSerial port
+  mySerial.begin(9600);
+  delay(100);
+  mySerial.println("");
+
   Serial.begin(9600);
+  delay(100);
   Serial.println("");
  
   // 重点1：DynamicJsonDocument对象
@@ -39,6 +61,9 @@ void setup() {
   // 通过串口监视器输出解析后的数据信息
   Serial.print("nameStr = ");Serial.println(nameStr);
   Serial.print("numberInt = ");Serial.println(numberInt);
+
+  mySerial.print("nameStr = ");mySerial.println(nameStr);
+  mySerial.print("numberInt = ");mySerial.println(numberInt);  
 }
  
 void loop() {}
