@@ -38,8 +38,8 @@ http://www.taichi-maker.com/homepage/esp8266-nodemcu-iot/iot-c/spiffs/
 ESP8266WiFiMulti wifiMulti;   
         
 void setup(){
-//   Serial.begin(9600);          
-//   Serial.println("");
+  Serial.begin(9600);          
+  Serial.println("");
 
   // define pin modes for tx, rx:
   pinMode(rxPin, INPUT);
@@ -52,9 +52,11 @@ void setup(){
   mySerial.println("");
   
   // 启动闪存文件系统
-  if(SPIFFS.begin()){                      
+  if(SPIFFS.begin()){       
+    Serial.println("SPIFFS Started.");               
     mySerial.println("SPIFFS Started.");
   } else {
+    Serial.println("SPIFFS Failed to Start.");
     mySerial.println("SPIFFS Failed to Start.");
   }
 
@@ -76,13 +78,22 @@ void setup(){
   wifiMulti.addAP(wifi_ssid, wifi_password);
   wifiMulti.addAP("ssid_from_AP_2", "your_password_for_AP_2"); 
   wifiMulti.addAP("ssid_from_AP_3", "your_password_for_AP_3");
+  Serial.println("Connecting ...");
   mySerial.println("Connecting ..."); 
 
   int i = 0;  
   while (wifiMulti.run() != WL_CONNECTED) { // 尝试进行wifi连接。
     delay(1000);
+    Serial.print(i++); Serial.print(' ');
     mySerial.print(i++); mySerial.print(' ');
   }
+
+  // WiFi连接成功后将通过串口监视器输出连接成功信息 
+  Serial.println("");
+  Serial.print("Connected to ");
+  Serial.println(WiFi.SSID());              // WiFi名称
+  Serial.print("IP address:\t");
+  Serial.println(WiFi.localIP());           // IP
   
   // WiFi连接成功后将通过串口监视器输出连接成功信息 
   mySerial.println("");
