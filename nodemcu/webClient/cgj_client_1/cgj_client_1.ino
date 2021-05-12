@@ -176,7 +176,14 @@ void parseInfo(WiFiClient client){
 
 //************************************************************************//
 // https://arduinojson.org/v6/assistant/
-
+/*
+  Step 1: Configuration
+  Processor:    ESP8266
+  Mode:         Deserialize
+  Output type:  String
+  This is the Assistant for ArduinoJson 6.18.0. 
+  Make sure the same version is installed on your computer.
+ */
 // String input;
 StaticJsonDocument<384> doc;
 DeserializationError error = deserializeJson(doc, client);

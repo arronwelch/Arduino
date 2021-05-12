@@ -50,6 +50,7 @@
 #include <ESP8266WiFi.h>        // 本程序使用 ESP8266WiFi库
 #include <ESP8266WiFiMulti.h>   //  ESP8266WiFiMulti库
 #include <ESP8266WebServer.h>   //  ESP8266WebServer库
+#include <ArduinoJson.h>
 
 #define buttonPin D3            // 按钮引脚D3
 
@@ -132,31 +133,69 @@ void handleRoot() {   //处理网站目录“/”的访问请求
   esp8266_server.send(200, "application/json", rootJson());  
 }
 
+// // 实时获取ESP8266开发板引脚信息并且建立JSON信息
+// // 以便ESP8266服务器通过响应信息发送给客户端
+// String rootJson(){
+
+//   // define pin modes for tx, rx:
+//   pinMode(rxPin, INPUT);
+//   pinMode(txPin, OUTPUT);
+//   // set up a new serial port
+//   SoftwareSerial mySerial(rxPin, txPin);
+//   // set the data rate for the SoftwareSerial port
+//   mySerial.begin(9600);
+//   delay(100);  
+
+//   String jsonCode = "{\"info\": {\"name\": \"taichimaker\",\"url\": \"www.taichi-maker.com\",\"email\": \"taichimaker@163.com\"},\"digital_pin\": {\"d1\": \"";
+//   jsonCode += String(digitalRead(D1));  
+//   jsonCode += "\",\"d2\": \""; 
+//   jsonCode += String(digitalRead(D2));  
+//   jsonCode += "\",\"d3\": \""; 
+//   jsonCode += String(digitalRead(D3));  
+//   jsonCode += "\"},\"analog_pin\": {\"a0\": \"";
+//   jsonCode += String(analogRead(A0));
+//   jsonCode += "\"}}";  
+  
+//   Serial.print("jsonCode: ");Serial.println(jsonCode);
+//   mySerial.print("jsonCode: ");mySerial.println(jsonCode);
+  
+//   return jsonCode;
+// }
+
+
+
+
+
+
+
 // 实时获取ESP8266开发板引脚信息并且建立JSON信息
 // 以便ESP8266服务器通过响应信息发送给客户端
+// https://arduinojson.org/v6/assistant/
+/*
+  Step 1: Configuration
+  Processor:    ESP8266
+  Mode:         Serialize
+  Output type:  String
+  This is the Assistant for ArduinoJson 6.18.0. 
+  Make sure the same version is installed on your computer.
+ */
 String rootJson(){
 
-  // define pin modes for tx, rx:
-  pinMode(rxPin, INPUT);
-  pinMode(txPin, OUTPUT);
-  // set up a new serial port
-  SoftwareSerial mySerial(rxPin, txPin);
-  // set the data rate for the SoftwareSerial port
-  mySerial.begin(9600);
-  delay(100);  
+  StaticJsonDocument<384> doc;
 
-  String jsonCode = "{\"info\": {\"name\": \"taichimaker\",\"url\": \"www.taichi-maker.com\",\"email\": \"taichimaker@163.com\"},\"digital_pin\": {\"d1\": \"";
-  jsonCode += String(digitalRead(D1));  
-  jsonCode += "\",\"d2\": \""; 
-  jsonCode += String(digitalRead(D2));  
-  jsonCode += "\",\"d3\": \""; 
-  jsonCode += String(digitalRead(D3));  
-  jsonCode += "\"},\"analog_pin\": {\"a0\": \"";
-  jsonCode += String(analogRead(A0));
-  jsonCode += "\"}}";  
-  
-  Serial.print("jsonCode: ");Serial.println(jsonCode);
-  mySerial.print("jsonCode: ");mySerial.println(jsonCode);
-  
+  JsonObject info = doc.createNestedObject("info");
+  info["name"] = "taichimaker";
+  info["url"] = "www.taichi-maker.com";
+  info["email"] = "taichimaker@163.com";
+
+  JsonObject digital_pin = doc.createNestedObject("digital_pin");
+  digital_pin["d1"] = String(digitalRead(D1));
+  digital_pin["d2"] = String(digitalRead(D2));
+  digital_pin["d3"] = String(digitalRead(D3));
+  doc["analog_pin"]["a0"] = String(analogRead(A0));
+
+  String jsonCode;
+  serializeJson(doc, jsonCode);
+
   return jsonCode;
 }
