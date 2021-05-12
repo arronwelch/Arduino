@@ -1,0 +1,60 @@
+\xFF
+Connecting ...
+1 3 5 
+Connected to Xiaomi_FD94
+IP address:     192.168.31.150
+Connecting to 192.168.31.150 Success!
+Sending request: 
+GET / HTTP/1.1
+Host: 192.168.31.150
+Connection: close
+
+
+status_response: HTTP/1.1 200 OK
+Found Header End. Start Parsing.
+info_name_str = taichimaker
+d3_bool = 1
+Connecting to 192.168.31.150 Success!
+Sending request: 
+GET / HTTP/1.1
+Host: 192.168.31.150
+Connection: close
+
+
+status_response: HTTP/1.1 200 OK
+Found Header End. Start Parsing.
+info_name_str = taichimaker
+d3_bool = 1
+Connecting to 192.168.31.150 Success!
+Sending request: 
+GET / HTTP/1.1
+Host: 192.168.31.150
+Connection: close
+
+
+status_response: HTTP/1.1 200 OK
+Found Header End. Start Parsing.
+info_name_str = taichimaker
+d3_bool = 1
+Connecting to 192.168.31.150 Success!
+Sending request: 
+GET / HTTP/1.1
+Host: 192.168.31.150
+Connection: close
+
+
+status_response: HTTP/1.1 200 OK
+Found Header End. Start Parsing.
+info_name_str = taichimaker
+d3_bool = 0
+Connecting to 192.168.31.150 Success!
+Sending request: 
+GET / HTTP/1.1
+Host: 192.168.31.150
+Connection: close
+
+
+status_response: HTTP/1.1 200 OK
+Found Header End. Start Parsing.
+info_name_str = taichimaker
+d3_bool = 1
