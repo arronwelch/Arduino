@@ -21,6 +21,24 @@
 20200511      CYNO朔           003        parse过程使用函数完成
 ***********************************************************************/
 
+/*
+    {
+        "info": {
+            "name": "taichimaker",
+            "url": "www.taichi-maker.com",
+            "email": "taichimaker@163.com"
+        },
+        "digital_pin": {
+            "d1": "1",
+            "d2": "0",
+            "d3": "1"
+        },
+        "analog_pin": {
+            "a0": "500"
+        }
+    }
+ */
+
 // include the SoftwareSerial library so you can use its functions:
 #include <SoftwareSerial.h>
 #define rxPin 4
@@ -120,7 +138,6 @@ void httpRequest(){
     client.print(httpRequest);
     Serial.println("Sending request: ");
     Serial.println(httpRequest); 
-
     mySerial.println("Sending request: ");
     mySerial.println(httpRequest);
 
@@ -128,7 +145,6 @@ void httpRequest(){
     String status_response = client.readStringUntil('\n');
     Serial.print("status_response: ");
     Serial.println(status_response);
-
     mySerial.print("status_response: ");
     mySerial.println(status_response);
  
@@ -158,29 +174,39 @@ void parseInfo(WiFiClient client){
   // set the data rate for the SoftwareSerial port
   mySerial.begin(9600);
 
-  const size_t capacity = JSON_OBJECT_SIZE(1) + 3*JSON_OBJECT_SIZE(3) + 140;
-  DynamicJsonDocument doc(capacity);
-   
-  deserializeJson(doc, client);
-  
-  JsonObject info = doc["info"];
-  const char* info_name = info["name"]; // "taichimaker"
-  const char* info_url = info["url"]; // "www.taichi-maker.com"
-  const char* info_email = info["email"]; // "taichimaker@163.com"
-  
-  JsonObject digital_pin = doc["digital_pin"];
-  const char* digital_pin_d1 = digital_pin["d1"]; // "1"
-  const char* digital_pin_d2 = digital_pin["d2"]; // "0"
-  const char* digital_pin_d3 = digital_pin["d3"]; // "1"
-  
-  const char* analog_pin_a0 = doc["analog_pin"]["a0"]; // "500"
+//************************************************************************//
+// https://arduinojson.org/v6/assistant/
+
+// String input;
+StaticJsonDocument<384> doc;
+DeserializationError error = deserializeJson(doc, client);
+
+if (error) {
+  Serial.print(F("deserializeJson() failed: "));
+  Serial.println(error.f_str());
+  mySerial.print(F("deserializeJson() failed: "));
+  mySerial.println(error.f_str());
+  return;
+}
+
+JsonObject info = doc["info"];
+const char* info_name = info["name"]; // "taichimaker"
+const char* info_url = info["url"]; // "www.taichi-maker.com"
+const char* info_email = info["email"]; // "taichimaker@163.com"
+
+JsonObject digital_pin = doc["digital_pin"];
+const char* digital_pin_d1 = digital_pin["d1"]; // "1"
+const char* digital_pin_d2 = digital_pin["d2"]; // "0"
+const char* digital_pin_d3 = digital_pin["d3"]; // "1"
+
+const char* analog_pin_a0 = doc["analog_pin"]["a0"]; // "500"
+//************************************************************************//
 
   String info_name_str = info["name"].as<String>();
   bool d3_bool = digital_pin["d3"].as<int>();
 
   Serial.print("info_name_str = ");Serial.println(info_name_str);
   Serial.print("d3_bool = ");Serial.println(d3_bool);
-
   mySerial.print("info_name_str = ");mySerial.println(info_name_str);
   mySerial.print("d3_bool = ");mySerial.println(d3_bool);
 
