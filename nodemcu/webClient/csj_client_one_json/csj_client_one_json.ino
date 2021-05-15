@@ -21,6 +21,25 @@
 该教程为对物联网开发感兴趣的朋友所设计和制作。如需了解更多该教程的信息，请参考以下网页：
 http://www.taichi-maker.com/homepage/esp8266-nodemcu-iot/iot-c/esp8266-nodemcu-web-client/http-request/
 ***********************************************************************/
+
+/*
+    {
+        "info": {
+            "name": "taichimaker",
+            "url": "www.taichi-maker.com",
+            "email": "taichimaker@163.com"
+        },
+        "digital_pin": {
+            "d1": "1",
+            "d2": "0",
+            "d3": "1"
+        },
+        "analog_pin": {
+            "a0": "500"
+        }
+    }
+ */
+
 #include <ESP8266WiFi.h>
 #include <ESP8266WiFiMulti.h>
 
