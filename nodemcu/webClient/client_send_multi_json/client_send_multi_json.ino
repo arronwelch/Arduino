@@ -28,7 +28,7 @@ http://www.taichi-maker.com/homepage/esp8266-nodemcu-iot/iot-c/esp8266-nodemcu-w
 
 ESP8266WiFiMulti wifiMulti;           // 建立ESP8266WiFiMulti对象
  
-const char* host = "192.168.31.150"; // 网络服务器地址
+const char* host = "192.168.31.250"; // 网络服务器地址
 const int httpPort = 80;            // http端口80
 
 void setup(){

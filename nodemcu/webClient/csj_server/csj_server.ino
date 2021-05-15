@@ -29,7 +29,7 @@ http://www.taichi-maker.com/homepage/esp8266-nodemcu-iot/
 
 ESP8266WiFiMulti wifiMulti;     // 建立ESP8266WiFiMulti对象,对象名称是'wifiMulti'
 
-IPAddress local_IP(192, 168, 31, 150); // 设置ESP8266-NodeMCU联网后的IP
+IPAddress local_IP(192, 168, 31, 250); // 设置ESP8266-NodeMCU联网后的IP
 IPAddress gateway(192, 168, 31, 1);    // 设置网关IP（通常网关IP是WiFI路由IP）
 IPAddress subnet(255, 255, 255, 0);   // 设置子网掩码
 IPAddress dns(192,168,31,1);           // 设置局域网DNS的IP（通常局域网DNS的IP是WiFI路由IP）
