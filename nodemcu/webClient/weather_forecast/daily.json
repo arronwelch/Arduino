@@ -1,0 +1,65 @@
+{
+  "results": [
+    {
+      "location": {
+        "id": "WS10730EM8EV",
+        "name": "Shenzhen",
+        "country": "CN",
+        "path": "Shenzhen,Shenzhen,Guangdong,China",
+        "timezone": "Asia/Shanghai",
+        "timezone_offset": "+08:00"
+      },
+      "daily": [
+        {
+          "date": "2021-05-15",
+          "text_day": "Cloudy",
+          "code_day": "4",
+          "text_night": "Cloudy",
+          "code_night": "4",
+          "high": "32",
+          "low": "27",
+          "rainfall": "0.0",
+          "precip": "0",
+          "wind_direction": "SW",
+          "wind_direction_degree": "225",
+          "wind_speed": "15.3",
+          "wind_scale": "3",
+          "humidity": "70"
+        },
+        {
+          "date": "2021-05-16",
+          "text_day": "Cloudy",
+          "code_day": "4",
+          "text_night": "Cloudy",
+          "code_night": "4",
+          "high": "33",
+          "low": "26",
+          "rainfall": "0.0",
+          "precip": "0",
+          "wind_direction": "CLM",
+          "wind_direction_degree": "",
+          "wind_speed": "8.4",
+          "wind_scale": "2",
+          "humidity": "71"
+        },
+        {
+          "date": "2021-05-17",
+          "text_day": "Thundershower",
+          "code_day": "11",
+          "text_night": "Thundershower",
+          "code_night": "11",
+          "high": "33",
+          "low": "26",
+          "rainfall": "0.0",
+          "precip": "0",
+          "wind_direction": "CLM",
+          "wind_direction_degree": "",
+          "wind_speed": "3.0",
+          "wind_scale": "1",
+          "humidity": "72"
+        }
+      ],
+      "last_update": "2021-05-15T18:00:00+08:00"
+    }
+  ]
+}

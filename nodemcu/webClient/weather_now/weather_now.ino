@@ -85,8 +85,11 @@ void httpRequest(String reqRes)
             Serial.println("Found Header End. Start Parsing.");
         }
 
+         String serverJson = client.readString();
+         Serial.println(serverJson);
+
         // 利用ArduinoJson库解析心知天气响应信息
-        parseInfo(client);
+        // parseInfo(client);
     }
     else
     {
