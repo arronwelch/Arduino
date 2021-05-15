@@ -321,7 +321,7 @@ for (JsonObject elem : results_0["daily"].as<JsonArray>()) {
 const char* results_0_last_update = results_0["last_update"]; // "2021-05-15T18:00:00+08:00"
 
 
-int cout = 0;
+int day = 0;
     // 从以上信息中摘选几个通过串口监视器显示
 for (JsonObject elem : results_0["daily"].as<JsonArray>()) {
 
@@ -349,7 +349,7 @@ for (JsonObject elem : results_0["daily"].as<JsonArray>()) {
     int results_0_daily_low_int = elem["low"].as<int>();
 
     Serial.print(F("======Weahter "));
-    Serial.print(cout);
+    Serial.print(day);
     Serial.println(F("======="));
 
     Serial.print(F("DATE: "));
@@ -367,7 +367,7 @@ for (JsonObject elem : results_0["daily"].as<JsonArray>()) {
     Serial.print(F("LOW: "));
     Serial.println(results_0_daily_low_int);
 
-    cout++;
+    day++;
 }
 
     String results_0_last_update_str = results_0["last_update"].as<String>();
