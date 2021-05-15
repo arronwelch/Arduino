@@ -85,11 +85,11 @@ void httpRequest(String reqRes)
             Serial.println("Found Header End. Start Parsing.");
         }
 
-         String serverJson = client.readString();
-         Serial.println(serverJson);
+        //  String serverJson = client.readString();
+        //  Serial.println(serverJson);
 
         // 利用ArduinoJson库解析心知天气响应信息
-        // parseInfo(client);
+        parseInfo(client);
     }
     else
     {
@@ -121,22 +121,74 @@ void connectWiFi()
     Serial.println(WiFi.localIP());            // WiFi.localIP()函数来实现的。该函数的返回值即NodeMCU的IP地址。
 }
 
+// // 利用ArduinoJson库解析心知天气响应信息
+// void parseInfo(WiFiClient client)
+// {
+//     const size_t capacity = JSON_ARRAY_SIZE(1) + JSON_OBJECT_SIZE(1) + 2 * JSON_OBJECT_SIZE(3) + JSON_OBJECT_SIZE(6) + 230;
+//     DynamicJsonDocument doc(capacity);
+
+//     deserializeJson(doc, client);
+
+//     JsonObject results_0 = doc["results"][0];
+
+//     JsonObject results_0_now = results_0["now"];
+//     const char *results_0_now_text = results_0_now["text"];               // "Sunny"
+//     const char *results_0_now_code = results_0_now["code"];               // "0"
+//     const char *results_0_now_temperature = results_0_now["temperature"]; // "32"
+
+//     const char *results_0_last_update = results_0["last_update"]; // "2020-06-02T14:40:00+08:00"
+
+//     // 通过串口监视器显示以上信息
+//     String results_0_now_text_str = results_0_now["text"].as<String>();
+//     int results_0_now_code_int = results_0_now["code"].as<int>();
+//     int results_0_now_temperature_int = results_0_now["temperature"].as<int>();
+
+//     String results_0_last_update_str = results_0["last_update"].as<String>();
+
+//     Serial.println(F("======Weahter Now======="));
+//     Serial.print(F("Weather Now: "));
+//     Serial.print(results_0_now_text_str);
+//     Serial.print(F(" "));
+//     Serial.println(results_0_now_code_int);
+//     Serial.print(F("Temperature: "));
+//     Serial.println(results_0_now_temperature_int);
+//     Serial.print(F("Last Update: "));
+//     Serial.println(results_0_last_update_str);
+//     Serial.println(F("========================"));
+// }
+
+
 // 利用ArduinoJson库解析心知天气响应信息
 void parseInfo(WiFiClient client)
 {
-    const size_t capacity = JSON_ARRAY_SIZE(1) + JSON_OBJECT_SIZE(1) + 2 * JSON_OBJECT_SIZE(3) + JSON_OBJECT_SIZE(6) + 230;
-    DynamicJsonDocument doc(capacity);
+// String input;
 
-    deserializeJson(doc, client);
+StaticJsonDocument<512> doc;
 
-    JsonObject results_0 = doc["results"][0];
+DeserializationError error = deserializeJson(doc, client);
 
-    JsonObject results_0_now = results_0["now"];
-    const char *results_0_now_text = results_0_now["text"];               // "Sunny"
-    const char *results_0_now_code = results_0_now["code"];               // "0"
-    const char *results_0_now_temperature = results_0_now["temperature"]; // "32"
+if (error) {
+  Serial.print(F("deserializeJson() failed: "));
+  Serial.println(error.f_str());
+  return;
+}
 
-    const char *results_0_last_update = results_0["last_update"]; // "2020-06-02T14:40:00+08:00"
+JsonObject results_0 = doc["results"][0];
+
+JsonObject results_0_location = results_0["location"];
+const char* results_0_location_id = results_0_location["id"]; // "WS10730EM8EV"
+const char* results_0_location_name = results_0_location["name"]; // "Shenzhen"
+const char* results_0_location_country = results_0_location["country"]; // "CN"
+const char* results_0_location_path = results_0_location["path"]; // "Shenzhen,Shenzhen,Guangdong,China"
+const char* results_0_location_timezone = results_0_location["timezone"]; // "Asia/Shanghai"
+const char* results_0_location_timezone_offset = results_0_location["timezone_offset"]; // "+08:00"
+
+JsonObject results_0_now = results_0["now"];
+const char* results_0_now_text = results_0_now["text"]; // "Overcast"
+const char* results_0_now_code = results_0_now["code"]; // "9"
+const char* results_0_now_temperature = results_0_now["temperature"]; // "28"
+
+const char* results_0_last_update = results_0["last_update"]; // "2021-05-15T20:40:00+08:00"
 
     // 通过串口监视器显示以上信息
     String results_0_now_text_str = results_0_now["text"].as<String>();
@@ -155,4 +207,5 @@ void parseInfo(WiFiClient client)
     Serial.print(F("Last Update: "));
     Serial.println(results_0_last_update_str);
     Serial.println(F("========================"));
+
 }

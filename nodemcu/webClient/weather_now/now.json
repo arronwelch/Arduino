@@ -1,0 +1,20 @@
+{
+  "results": [
+    {
+      "location": {
+        "id": "WS10730EM8EV",
+        "name": "Shenzhen",
+        "country": "CN",
+        "path": "Shenzhen,Shenzhen,Guangdong,China",
+        "timezone": "Asia/Shanghai",
+        "timezone_offset": "+08:00"
+      },
+      "now": {
+        "text": "Overcast",
+        "code": "9",
+        "temperature": "28"
+      },
+      "last_update": "2021-05-15T20:40:00+08:00"
+    }
+  ]
+}
