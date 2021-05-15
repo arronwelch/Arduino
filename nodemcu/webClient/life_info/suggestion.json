@@ -1,0 +1,41 @@
+{
+  "results": [
+    {
+      "location": {
+        "id": "WS10730EM8EV",
+        "name": "Shenzhen",
+        "country": "CN",
+        "path": "Shenzhen,Shenzhen,Guangdong,China",
+        "timezone": "Asia/Shanghai",
+        "timezone_offset": "+08:00"
+      },
+      "suggestion": {
+        "car_washing": {
+          "brief": "Good",
+          "details": ""
+        },
+        "dressing": {
+          "brief": "Very Hot",
+          "details": ""
+        },
+        "flu": {
+          "brief": "Rarely",
+          "details": ""
+        },
+        "sport": {
+          "brief": "Not Good",
+          "details": ""
+        },
+        "travel": {
+          "brief": "Good",
+          "details": ""
+        },
+        "uv": {
+          "brief": "Moderate",
+          "details": ""
+        }
+      },
+      "last_update": "2021-05-15T18:31:37+08:00"
+    }
+  ]
+}
